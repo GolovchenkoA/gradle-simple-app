@@ -12,4 +12,7 @@ class App {
 
 fun main() {
     println(App().greeting)
+
+    println("add to commit 1")
+    println("add to commit 2")
 }
