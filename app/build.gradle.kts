@@ -239,4 +239,5 @@ tasks.register("printMessage") {
     }
 
     //comment for branch 1
+    //comment for branch 2
 }
