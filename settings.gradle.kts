@@ -7,9 +7,13 @@
 
 pluginManagement {
 
+//    include plugin for manual testing
+//    See: https://docs.gradle.org/current/userguide/testing_gradle_plugins.html
+    includeBuild("../my-git-plugin")
+
     plugins {
 //        id("org.example.openapi-gradle-plugin") version "0.0.1"
-        id("openapi-plugin") version "0.0.14"
+//        id("openapi-plugin") version "0.0.14"
         id("org.openapi.generator") version "7.5.0"
     }
 

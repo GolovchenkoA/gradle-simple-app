@@ -4,12 +4,26 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
+        <compositeConfiguration>
+          <compositeBuild compositeDefinitionSource="SCRIPT">
+            <builds>
+              <build path="$PROJECT_DIR$/../my-git-plugin" name="my-git-plugin">
+                <projects>
+                  <project path="$PROJECT_DIR$/../my-git-plugin" />
+                  <project path="$PROJECT_DIR$/../my-git-plugin/plugin" />
+                </projects>
+              </build>
+            </builds>
+          </compositeBuild>
+        </compositeConfiguration>
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="gradleJvm" value="#JAVA_HOME" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/../my-git-plugin" />
+            <option value="$PROJECT_DIR$/../my-git-plugin/plugin" />
           </set>
         </option>
       </GradleProjectSettings>

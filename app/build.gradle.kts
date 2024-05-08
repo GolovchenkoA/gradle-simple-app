@@ -1,6 +1,6 @@
+//import org.openapitools.generator.gradle.plugin.tasks.GenerateTask
 import org.example.*
 import org.openapitools.generator.gradle.plugin.tasks.GenerateTask
-import java.nio.file.Files
 
 
 /*
@@ -17,8 +17,14 @@ plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
 //    id("org.example.openapi-gradle-plugin")
-    id("openapi-plugin")
-    id("org.openapi.generator")
+    id("openapi-plugin") version "0.0.16"
+//    id("org.openapi.generator")
+
+
+    // if it does not have a version see settings.gradle.
+    id("org.example.git-plugin")
+//    id("org.example.git-plugin") version "0.0.2"
+
 }
 
 repositories {
@@ -72,17 +78,17 @@ tasks.register<Task>("create file task custom") {
 
 
 // Original Open Api task
-tasks.named<GenerateTask>("openApiGenerate") {
-    group = "this project tasks"
-
-//    inputSpec = layout.projectDirectory.file("src\\main\\resources\\openapi.yml").asFile.absolutePath
-    inputSpec = ".\\src\\main\\resources\\openapi.yml" // !! it works
-
- // path: app\openapi\openapi.yml
-//    inputSpec = layout.projectDirectory.file("openapi\\openapi.yml").asFile.absolutePath
-
-generatorName = "java"
-}
+//tasks.named<GenerateTask>("openApiGenerate") {
+//    group = "this project tasks"
+//
+////    inputSpec = layout.projectDirectory.file("src\\main\\resources\\openapi.yml").asFile.absolutePath
+//    inputSpec = ".\\src\\main\\resources\\openapi.yml" // !! it works
+//
+// // path: app\openapi\openapi.yml
+////    inputSpec = layout.projectDirectory.file("openapi\\openapi.yml").asFile.absolutePath
+//
+//generatorName = "java"
+//}
 
 // it has name 'greeting2' because a task with name 'greeting' is already registered in my OpenApiPluginPlugin
 tasks.register<Greeting>("greeting2") {
@@ -199,22 +205,36 @@ tasks.`generate-openapi-classes` {
 //    dependsOn("test")
 }
 
-// v2
-//tasks.named<CustomOpenApiGenerator>("generate-openapi-classes") {
-//    group = "this project tasks"
+// v2kotlin-spring
+//tasks.named<GenerateTask>("openApiGenerate") {
+//    generatorName = "kotlin-spring"
+//}
+tasks.named<GenerateTask>("openApiGenerate") {
+//    group = "openapi tools custom"
+    generatorName = "kotlin-spring"
+}
+
+//tasks.register("generateClient", GenerateTask::class.java) {
+//tasks.named("openApiGenerate", GenerateTask::class.java) {
+////    group = "this project tasks"
+////    inputSpec = ".\\src\\main\\resources\\openapi.yml" // doesn't work
+////    inputSpec = layout.projectDirectory.file("src\\main\\resources\\openapi.yml").asFile.absolutePath
+////    generatorName = "java"
+//    outputDir = project.layout.buildDirectory.dir("dist3").get().asFile.absolutePath
+////    enablePostProcessFile = true
 //}
 
-tasks.register("generateClient", GenerateTask::class.java) {
-//tasks.named("generateClient", GenerateTask::class.java) {
-    group = "this project tasks"
-//    inputSpec = ".\\src\\main\\resources\\openapi.yml" // doesn't work
-    inputSpec = layout.projectDirectory.file("src\\main\\resources\\openapi.yml").asFile.absolutePath
-    generatorName = "java"
-    outputDir = layout.buildDirectory.dir("dist").get().asFile.absolutePath
-//    enablePostProcessFile = true
-}
 
 //tasks.withType<GenerateTask>() {
 ////    inputSpec = file("src/main/resources/openapi.yml").path.toString()
 //    inputSpec = "C:\\Users\\aholovchenko\\IdeaProjects\\gradle-simple-app\\app\\src\\main\\resources\\openapi.yml"
 //}
+
+
+// Run: gradlew -Pprop1=p1 printMessage
+// or   gradlew printMessage -Pprop1=p1
+tasks.register("printMessage") {
+    if(project.hasProperty("prop1")) {
+        println("Prop 1 value is: ${project.property("prop1")}")
+    }
+}

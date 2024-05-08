@@ -11,6 +11,7 @@ class App {
 }
 
 fun main() {
+    println("do not add to commit")
     println(App().greeting)
 
     println("add to commit 1")
