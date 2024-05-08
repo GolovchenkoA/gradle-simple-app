@@ -237,4 +237,7 @@ tasks.register("printMessage") {
     if(project.hasProperty("prop1")) {
         println("Prop 1 value is: ${project.property("prop1")}")
     }
+
+    //comment for branch 1
+    //comment for branch 2
 }
